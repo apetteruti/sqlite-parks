@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Visit Parks</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/lumen/bootstrap.min.css" />
+  <!-- <link rel="stylesheet" href="css/styles.css" media="screen" title="no title"> -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <style>
+    #parks-table th,
+    td {
+      display: inline-block;
+      width: 24.75%;
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <!-- Employee Tracker -->
+    <div class="container">
+
+      <!-- Jumbotron -->
+      <div class="jumbotron" style="background-color: darkgreen; color: white">
+        <h1 class="text-center">Visit the Parks</h1>
+        <h3 class="text-center">Keep track of the parks you've visited</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Add Park  -->
+          <div class="card mb-4">
+            <div class="card-header">Add Park</div>
+            <div class="card-body">
+
+              <!-- Entry Form -->
+              <form>
+                <div class="form-group">
+                  <label for="park-name-input">Park Name</label>
+                  <input class="form-control" id="park-name-input" placeholder="Acadia National Park" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="location-input">Location</label>
+                  <input class="form-control" id="location-input" placeholder="Maine" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="size-input">Size of the Park (Acres)</label>
+                  <input class="form-control" id="size-input" placeholder="20000" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="visited-input">Visited? (Default is False)</label>
+                  <input class="form-control" id="visited-input" placeholder="false" type="text">
+                </div>
+                <button class="btn btn-primary float-right" id="add-park-btn">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <!-- Entered Parks-->
+          <div class="card mb-4">
+            <div class="card-header">Entered Parks</div>
+            <div class="card-body">
+              <table class="table table-sm table-hover" id='parks-table'>
+                <thead>
+                  <tr>
+                    <th scope="col">Park Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Size (Acres)</th>
+                    <th scope="col">Visited?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./js/parks.js"></script>
+
+  </body>
+
+</html>
