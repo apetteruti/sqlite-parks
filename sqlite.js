@@ -60,15 +60,15 @@ function createPark() {
       db.run(`INSERT INTO parks (park_name, location, visited) VALUES (?,?,?)`,
         answer.park_name, answer.location, answer.visited,
         // "park", "park", "n",
-      
+
         function (err) {
           if (err) {
             return console.error(err.message);
           }
           console.log(`Rows inserted ${this.changes}`);
         });
-        optionsMenu();
-      })
+      optionsMenu();
+    })
 };
 
 
@@ -81,6 +81,35 @@ function createPark() {
 //   }
 //   console.log (`Rows inserted ${this.changes}`)
 // });
+
+function updatePark() {
+  db.all("SELECT park_name as park_name FROM parks", function (err, results) {
+    if (err) throw err;
+    inquirer.prompt([{
+        name: "choice",
+        type: "rawlist",
+        choices: function () {
+          var choiceArray = [];
+          for (var i = 0; i < results.length; i++) {
+            choiceArray.push(results[i].park_name);
+          }
+          return choiceArray;
+        },
+        message: "Which park have you visited?"
+      }])
+      .then(function (answer) {
+        db.run(`UPDATE parks SET 1 WHERE park_name = ?`, answer.choice,
+
+          function (err, res) {
+            console.log("----------------------------------");
+            console.log(answer.choice + " has been set to Visited!");
+            console.log("----------------------------------")
+            optionsMenu();
+          })
+      })
+  })
+}
+
 
 function deletePark() {
   db.all("SELECT park_name as park_name FROM parks", function (err, results) {
@@ -98,14 +127,14 @@ function deletePark() {
         message: "Which park would you like to remove from the list?"
       }])
       .then(function (answer) {
-        db.run(`DELETE FROM parks WHERE park_name = ?`, answer.choice, 
-        
-        function (err) {
-          if (err) {
-            return console.error(err.message);
-          }
-          console.log(`Rows deleted ${this.changes}`)
-        })
+        db.run(`DELETE FROM parks WHERE park_name = ?`, answer.choice,
+
+          function (err) {
+            if (err) {
+              return console.error(err.message);
+            }
+            console.log(`Rows deleted ${this.changes}`)
+          })
         optionsMenu();
       })
   })
