@@ -98,7 +98,7 @@ function updatePark() {
         message: "Which park have you visited?"
       }])
       .then(function (answer) {
-        db.run(`UPDATE parks SET 1 WHERE park_name = ?`, answer.choice,
+        db.run(`UPDATE parks SET visited = 1 WHERE park_name = ?`, answer.choice,
 
           function (err, res) {
             console.log("----------------------------------");
